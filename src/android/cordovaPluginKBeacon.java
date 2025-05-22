@@ -30,6 +30,7 @@ import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketBase;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketIBeacon;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvType;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketSensor;
+import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketSystem;
 import com.kkmcn.kbeaconlib2.KBeacon;
 import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 
@@ -75,6 +76,8 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                         switch (advPacket.getAdvType()) {
                             case KBAdvType.IBeacon: {
                                 KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
+                                KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advSystem;
+                                
                                 JSONArray KBArray = new JSONArray();
 
                                     //KBArray.put(beacon.getName());
@@ -84,6 +87,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                                     KBArray.put(advIBeacon.getUuid());
                                     KBArray.put(advIBeacon.getMinorID());
                                     KBArray.put(advIBeacon.getMajorID());
+                                    KBArray.put(advSystem.getBatteryPercent());
 
                                 mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 }
