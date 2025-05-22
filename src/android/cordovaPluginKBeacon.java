@@ -29,6 +29,7 @@ import android.os.Build;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketBase;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketIBeacon;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvType;
+import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketSensor;
 import com.kkmcn.kbeaconlib2.KBeacon;
 import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 
@@ -83,10 +84,10 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                                     KBArray.put(advIBeacon.getUuid());
                                     KBArray.put(advIBeacon.getMinorID());
                                     KBArray.put(advIBeacon.getMajorID());
-                                    KBArray.put(advIBeacon.getBatteryPercent());
 
                                 mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 }
+                            
                                break;
                             }
                         }
