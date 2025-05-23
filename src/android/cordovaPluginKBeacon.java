@@ -97,7 +97,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 									
 									KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
 									
-									JSONArray KBArray = new JSONArray()
+									JSONArray KBArray = new JSONArray();
 									
 									KBArray.put(advSystem.getBatteryPercent());
 									
