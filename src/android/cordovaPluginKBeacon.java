@@ -27,10 +27,13 @@ import android.os.Build;
 
 
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketBase;
+import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketEddyTLM;
+import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketEddyUID;
+import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketEddyURL;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketIBeacon;
-import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvType;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketSensor;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketSystem;
+import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvType;
 import com.kkmcn.kbeaconlib2.KBeacon;
 import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 
@@ -76,7 +79,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                         switch (advPacket.getAdvType()) {
                             case KBAdvType.IBeacon: {
                                 KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
-                                KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
                                 
                                 JSONArray KBArray = new JSONArray();
 
@@ -87,10 +89,21 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                                     KBArray.put(advIBeacon.getUuid());
                                     KBArray.put(advIBeacon.getMinorID());
                                     KBArray.put(advIBeacon.getMajorID());
-                                    KBArray.put(advSystem.getBatteryPercent());
 
                                 mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 }
+                                
+                                	case KBAdvType.System: {
+									
+									KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
+									
+									JSONArray KBArray = new JSONArray()
+									
+									KBArray.put(advSystem.getBatteryPercent());
+									
+								    mBeaconsDictory.put(KBArray);
+								
+							    }
                             
                                break;
                             }
