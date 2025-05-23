@@ -84,8 +84,10 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
                                     //KBArray.put(beacon.getName());
                                     KBArray.put(beacon.getRssi());
-
-                                    KBArray.put(advIBeacon.getRefTxPower());
+				    KBArray.put(beacon.getMacAddress());
+				    KBArray.put(beacon.getBatteryPercent());
+                                    
+				    KBArray.put(advIBeacon.getRefTxPower());
                                     KBArray.put(advIBeacon.getUuid());
                                     KBArray.put(advIBeacon.getMinorID());
                                     KBArray.put(advIBeacon.getMajorID());
