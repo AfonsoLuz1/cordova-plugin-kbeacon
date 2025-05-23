@@ -95,15 +95,15 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                                 }
 
                             case KBAdvType.System: {
-								KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
-								JSONArray KBArray = new JSONArray();
-								
+				KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
+				JSONArray KBArray = new JSONArray();
+				
                                 KBArray.put(advSystem.getMacAddress());
-								KBArray.put(advSystem.getModel());
-								KBArray.put(advSystem.getBatteryPercent());
-								KBArray.put(advSystem.getVersion());
-								
-								mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+				KBArray.put(advSystem.getModel());
+				KBArray.put(advSystem.getBatteryPercent());
+				KBArray.put(advSystem.getVersion());
+				
+				mBeaconsDictory.put(KBArray);
                                 break;
 							}
 								
