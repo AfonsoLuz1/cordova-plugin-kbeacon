@@ -106,8 +106,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 				mBeaconsDictory.put(advSystem.getMacAddress().toString(), KBArray);
                                 break;
 				}
-								
-                               break;
                             }
                         }
                     }
