@@ -26,6 +26,7 @@ import android.widget.Toast;
 import android.os.Build;
 
 
+import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAccSensorValue;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketBase;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketEddyTLM;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketEddyUID;
@@ -79,7 +80,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                         switch (advPacket.getAdvType()) {
                             case KBAdvType.IBeacon: {
                                 KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
-                                
                                 JSONArray KBArray = new JSONArray();
 
                                     //KBArray.put(beacon.getName());
@@ -92,19 +92,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
                                 mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 }
-                                
-                                	case KBAdvType.System: {
-									
-									KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
-									
-									JSONArray KBArray = new JSONArray();
-									
-									KBArray.put(advSystem.getBatteryPercent());
-									
-								    mBeaconsDictory.put(KBArray);
-								
-							    }
-                            
                                break;
                             }
                         }
