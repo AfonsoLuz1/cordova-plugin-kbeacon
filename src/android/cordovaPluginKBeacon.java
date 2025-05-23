@@ -91,12 +91,9 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                                     KBArray.put(advIBeacon.getMajorID());
 
                                 mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
-                                break;
-                                }
 
-                            case KBAdvType.System: {
 				KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
-				JSONArray KBArray = new JSONArray();
+
 				
                                 KBArray.put(advSystem.getMacAddress());
 				KBArray.put(advSystem.getModel());
@@ -195,7 +192,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, objeto);
             callbackContext.sendPluginResult(pluginResult);
         } else {
-            PluginResult pluginResult = new PluginResult(PluginResult.Status.ERROR, "El arreglo es nulo");
+            PluginResult pluginResult = new PluginResult(PluginResult.Status.ERROR, "Nothing found.");
             callbackContext.sendPluginResult(pluginResult);
         }
     }
