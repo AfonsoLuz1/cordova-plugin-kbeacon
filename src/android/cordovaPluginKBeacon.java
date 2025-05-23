@@ -91,9 +91,12 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                                     KBArray.put(advIBeacon.getMajorID());
 
                                 mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+                                break;
+                                }
 
+                            case KBAdvType.System: {
 				KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
-
+				JSONArray KBArray = new JSONArray();
 				
                                 KBArray.put(advSystem.getMacAddress());
 				KBArray.put(advSystem.getModel());
