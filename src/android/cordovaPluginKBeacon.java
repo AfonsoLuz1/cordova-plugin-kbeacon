@@ -103,9 +103,9 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 				KBArray.put(advSystem.getBatteryPercent());
 				KBArray.put(advSystem.getVersion());
 				
-				mBeaconsDictory.put(KBArray);
+				mBeaconsDictory.put(advSystem.getMacAddress().toString(), KBArray);
                                 break;
-							}
+				}
 								
                                break;
                             }
