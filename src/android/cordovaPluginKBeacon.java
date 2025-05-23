@@ -91,7 +91,22 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                                     KBArray.put(advIBeacon.getMajorID());
 
                                 mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+                                break;
                                 }
+
+                            case KBAdvType.System: {
+								KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
+								JSONArray KBArray = new JSONArray();
+								
+                                KBArray.put(advSystem.getMacAddress());
+								KBArray.put(advSystem.getModel());
+								KBArray.put(advSystem.getBatteryPercent());
+								KBArray.put(advSystem.getVersion());
+								
+								mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+                                break;
+							}
+								
                                break;
                             }
                         }
@@ -191,7 +206,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         mBeaconsMgr.setScanMinRssiFilter(SCAN_MIN_RSSI_FILTER);
         int nStartScan = mBeaconsMgr.startScanning();
         if (nStartScan == 0){
-            callbackContext.success("Iniciando la lectura de dispositivos");
+            callbackContext.success("Starting the scan of devices");
         }
         else if (nStartScan == KBeaconsMgr.SCAN_ERROR_BLE_NOT_ENABLE) {
             callbackContext.error("BLE function is not enable");
