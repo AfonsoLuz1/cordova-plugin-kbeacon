@@ -75,20 +75,22 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             @Override
             public void onBeaconDiscovered(KBeacon[] beacons) {
                 for (KBeacon beacon: beacons){
-
-		mBeaconsDictory.put(beacon.getName(), beacon);
+			
+		JSONArray KBArray = new JSONArray();
+		KBArray.put(beacon.getName());
+		KBArray.put(beacon.getRssi()); 
+		KBArray.put(beacon.getBatteryPercent());
+		mBeaconsDictory.put(beacon.getName().toString(), KBArray);
 			
                     for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
                         	case KBAdvType.IBeacon: {
 	                                KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
 	                                JSONArray KBArray = new JSONArray();
-	                                KBArray.put(beacon.getRssi());                                    
 					KBArray.put(advIBeacon.getRefTxPower());
 	                                KBArray.put(advIBeacon.getUuid());
 	                                KBArray.put(advIBeacon.getMinorID());
-	                                KBArray.put(advIBeacon.getMajorID());
-					KBArray.put(beacon.getBatteryPercent());
+	                                KBArray.put(advIBeacon.getMajorID());					
                                     	mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 break;
                                 }
