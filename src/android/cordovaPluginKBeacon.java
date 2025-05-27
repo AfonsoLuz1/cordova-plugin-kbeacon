@@ -80,7 +80,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		KBArray.put(beacon.getName());
 		KBArray.put(beacon.getRssi()); 
 		KBArray.put(beacon.getBatteryPercent());
-		mBeaconsDictory.put(beacon.getName().toString(), KBArray);
+		mBeaconsDictory.put(beacon.getRssi().toString(), KBArray);
 			
                     for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
