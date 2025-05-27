@@ -89,6 +89,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	                                KBArray.put(advIBeacon.getMajorID());
 					KBArray.put(beacon.getBatteryPercent());
 					KBArray.put(advPacket.getAdvType());
+					KBArray.put(KBAdvType.IBeacon() + " " + KBAdvType.EddyTLM() + " " + KBAdvType.Sensor() + " "+ KBAdvType.EddyUID() + " " + KBAdvType.System );
                                     	mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 break;
                                 }
