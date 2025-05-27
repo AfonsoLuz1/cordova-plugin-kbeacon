@@ -86,7 +86,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                         switch (advPacket.getAdvType()) {
                         	case KBAdvType.IBeacon: {
 	                                KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
-	                                JSONArray KBArray = new JSONArray();
+
 					KBArray.put(advIBeacon.getRefTxPower());
 	                                KBArray.put(advIBeacon.getUuid());
 	                                KBArray.put(advIBeacon.getMinorID());
@@ -97,7 +97,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
 				case KBAdvType.EddyTLM: {
 		                        KBAdvPacketEddyTLM advTLM = (KBAdvPacketEddyTLM) advPacket;
-					JSONArray KBArray = new JSONArray();
+
 		                        KBArray.put(advTLM.getBatteryLevel());
 		                        KBArray.put(advTLM.getTemperature());
 		                        KBArray.put(advTLM.getAdvCount());
@@ -107,7 +107,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
 	                        case KBAdvType.Sensor: {
 		                        KBAdvPacketSensor advSensor = (KBAdvPacketSensor) advPacket;
-					JSONArray KBArray = new JSONArray();
+
 		                        KBArray.put(advSensor.getBatteryLevel());
 		                        KBArray.put(advSensor.getTemperature());
 
@@ -133,7 +133,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 					
 				case KBAdvType.EddyUID: {
 		                        KBAdvPacketEddyUID advUID = (KBAdvPacketEddyUID) advPacket;
-					JSONArray KBArray = new JSONArray();
+
 		                        KBArray.put(advUID.getNid());
 		                        KBArray.put(advUID.getSid());
 					mBeaconsDictory.put(advUID.getNid().toString(), KBArray);
@@ -142,7 +142,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
                        		case KBAdvType.EddyURL: {
 		                        KBAdvPacketEddyURL advURL = (KBAdvPacketEddyURL) advPacket;
-					JSONArray KBArray = new JSONArray();
+
 		                        KBArray.put(advURL.getUrl());
 					mBeaconsDictory.put(advURL.getUrl().toString(), KBArray);
                             	break;
@@ -150,7 +150,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
                             	case KBAdvType.System: {
 					KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
-					JSONArray KBArray = new JSONArray();
+
 	                                KBArray.put(advSystem.getMacAddress());
 					KBArray.put(advSystem.getModel());
 					KBArray.put(advSystem.getBatteryPercent());
