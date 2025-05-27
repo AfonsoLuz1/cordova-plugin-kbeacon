@@ -38,6 +38,7 @@ import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvType;
 import com.kkmcn.kbeaconlib2.KBeacon;
 import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 
+import java.util.Locale;
 import java.util.HashMap;
 
 public class cordovaPluginKBeacon extends CordovaPlugin {
