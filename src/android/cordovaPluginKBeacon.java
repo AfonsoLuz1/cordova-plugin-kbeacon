@@ -119,12 +119,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		                        if (advSensor.getHumidity() != null) {
 		                            KBArray.put(advSensor.getHumidity());
 		                        }
-	
-		                        //device that has cutoff sensor
-		                        if (advSensor.getAlarmStatus() != null) {
-		                            KBArray.put(advSensor.getAlarmStatus());
-		                        }
-	
+		
 		                        //device that has PIR sensor
 		                        if (advSensor.getPirIndication() != null) {
 		                            KBArray.put(advSensor.getPirIndication());
