@@ -69,13 +69,14 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
 
-        mBeaconsDictory = new HashMap<>(50);
+
         beaconMgr = new KBeaconsMgr.KBeaconMgrDelegate() {
 
             @Override
             public void onBeaconDiscovered(KBeacon[] beacons) {
                 for (KBeacon beacon: beacons){
-			
+	        mBeaconsDictory = new HashMap<>(50);		
+		
 		JSONArray KBArray = new JSONArray();
 		KBArray.put(beacon.getName());
 		KBArray.put(beacon.getRssi()); 
