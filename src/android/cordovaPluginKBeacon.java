@@ -101,6 +101,37 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	                        break;
 	                        }
 
+	                        case KBAdvType.Sensor: {
+		                        KBAdvPacketSensor advSensor = (KBAdvPacketSensor) advPacket;
+					JSONArray KBArray = new JSONArray();
+		                        KBArray.put(advSensor.getBatteryLevel());
+		                        KBArray.put(advSensor.getTemperature());
+
+		                        //device that has acc sensor
+		                        KBAccSensorValue accPos = advSensor.getAccSensor();
+		                        if (accPos != null) {
+		                            String strAccValue = String.format(Locale.ENGLISH, "x:%d; y:%d; z:%d", accPos.xAis, accPos.yAis, accPos.zAis);
+		                            KBArray.put(strAccValue);
+		                        }
+	
+		                        //device that has humidity sensor
+		                        if (advSensor.getHumidity() != null) {
+		                            KBArray.put(advSensor.getHumidity());
+		                        }
+	
+		                        //device that has cutoff sensor
+		                        if (advSensor.getAlarmStatus() != null) {
+		                            KBArray.put(advSensor.getAlarmStatus());
+		                        }
+	
+		                        //device that has PIR sensor
+		                        if (advSensor.getPirIndication() != null) {
+		                            KBArray.put(advSensor.getPirIndication());
+		                        }
+				    mBeaconsDictory.put(advSensor.getTemperature().toString(), KBArray);					
+	                        break;
+	                        }					
+					
 				case KBAdvType.EddyUID: {
 		                        KBAdvPacketEddyUID advUID = (KBAdvPacketEddyUID) advPacket;
 					JSONArray KBArray = new JSONArray();
