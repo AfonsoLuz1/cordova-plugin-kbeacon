@@ -76,7 +76,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             public void onBeaconDiscovered(KBeacon[] beacons) {
                 for (KBeacon beacon: beacons){
 
-		mBeaconsDictory.put(beacon.getMac(), beacon);
+		mBeaconsDictory.put(beacon.getName(), beacon);
 			
                     for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
