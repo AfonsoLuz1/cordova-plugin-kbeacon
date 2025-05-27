@@ -80,7 +80,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		KBArray.put(beacon.getName());
 		KBArray.put(beacon.getRssi()); 
 		KBArray.put(beacon.getBatteryPercent());
-		mBeaconsDictory.put(beacon.getRssi().toString(), KBArray);
+
 			
                     for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
@@ -91,7 +91,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	                                KBArray.put(advIBeacon.getUuid());
 	                                KBArray.put(advIBeacon.getMinorID());
 	                                KBArray.put(advIBeacon.getMajorID());					
-                                    	mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+
                                 break;
                                 }
 
@@ -101,7 +101,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		                        KBArray.put(advTLM.getBatteryLevel());
 		                        KBArray.put(advTLM.getTemperature());
 		                        KBArray.put(advTLM.getAdvCount());
-					mBeaconsDictory.put(advTLM.getBatteryLevel().toString(), KBArray);
+
 	                        break;
 	                        }
 
@@ -127,7 +127,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		                        if (advSensor.getPirIndication() != null) {
 		                            KBArray.put(advSensor.getPirIndication());
 		                        }
-				    mBeaconsDictory.put(advSensor.getTemperature().toString(), KBArray);					
+				
 	                        break;
 	                        }					
 					
@@ -136,7 +136,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
 		                        KBArray.put(advUID.getNid());
 		                        KBArray.put(advUID.getSid());
-					mBeaconsDictory.put(advUID.getNid().toString(), KBArray);
+
                             	break;
                         	}
 
@@ -144,7 +144,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		                        KBAdvPacketEddyURL advURL = (KBAdvPacketEddyURL) advPacket;
 
 		                        KBArray.put(advURL.getUrl());
-					mBeaconsDictory.put(advURL.getUrl().toString(), KBArray);
+
                             	break;
                         	}
 
@@ -155,11 +155,12 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 					KBArray.put(advSystem.getModel());
 					KBArray.put(advSystem.getBatteryPercent());
 					KBArray.put(advSystem.getVersion());
-					mBeaconsDictory.put(advSystem.getMacAddress().toString(), KBArray);
+
                                 break;
 				}
                             }
                         }
+			mBeaconsDictory.put(beacon.getRssi().toString(), KBArray);
                     }
 
 
