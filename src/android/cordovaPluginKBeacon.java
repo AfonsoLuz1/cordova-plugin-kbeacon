@@ -78,32 +78,51 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                     //mBeaconsDictory.put(beacon.getMac(), beacon);
                     for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
-                            case KBAdvType.IBeacon: {
-                                KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
-                                JSONArray KBArray = new JSONArray();
-
-                                    //KBArray.put(beacon.getName());
-                                    KBArray.put(beacon.getRssi());                                    
-				    KBArray.put(advIBeacon.getRefTxPower());
-                                    KBArray.put(advIBeacon.getUuid());
-                                    KBArray.put(advIBeacon.getMinorID());
-                                    KBArray.put(advIBeacon.getMajorID());
-				    KBArray.put(beacon.getBatteryPercent());
-
-                                mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+                        	case KBAdvType.IBeacon: {
+	                                KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
+	                                JSONArray KBArray = new JSONArray();
+	                                KBArray.put(beacon.getRssi());                                    
+					KBArray.put(advIBeacon.getRefTxPower());
+	                                KBArray.put(advIBeacon.getUuid());
+	                                KBArray.put(advIBeacon.getMinorID());
+	                                KBArray.put(advIBeacon.getMajorID());
+					KBArray.put(beacon.getBatteryPercent());
+                                    	mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 break;
                                 }
 
-                            case KBAdvType.System: {
-				KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
-				JSONArray KBArray = new JSONArray();
-				
-                                KBArray.put(advSystem.getMacAddress());
-				KBArray.put(advSystem.getModel());
-				KBArray.put(advSystem.getBatteryPercent());
-				KBArray.put(advSystem.getVersion());
-				
-				mBeaconsDictory.put(advSystem.getMacAddress().toString(), KBArray);
+				case KBAdvType.EddyTLM: {
+		                        KBAdvPacketEddyTLM advTLM = (KBAdvPacketEddyTLM) advPacket;
+		                        KBArray.put(advTLM.getBatteryLevel());
+		                        KBArray.put(advTLM.getTemperature());
+		                        KBArray.put(advTLM.getAdvCount());
+					mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+	                        break;
+	                        }
+
+				case KBAdvType.EddyUID: {
+		                        KBAdvPacketEddyUID advUID = (KBAdvPacketEddyUID) advPacket;
+		                        KBArray.put(advUID.getNid());
+		                        KBArray.put(advUID.getSid());
+					mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+                            	break;
+                        	}
+
+                       		case KBAdvType.EddyURL: {
+		                        KBAdvPacketEddyURL advURL = (KBAdvPacketEddyURL) advPacket;
+		                        KBArray.put(advURL.getUrl());
+					mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+                            	break;
+                        	}
+
+                            	case KBAdvType.System: {
+					KBAdvPacketSystem advSystem = (KBAdvPacketSystem) advPacket;
+					JSONArray KBArray = new JSONArray();
+	                                KBArray.put(advSystem.getMacAddress());
+					KBArray.put(advSystem.getModel());
+					KBArray.put(advSystem.getBatteryPercent());
+					KBArray.put(advSystem.getVersion());
+					mBeaconsDictory.put(advSystem.getMacAddress().toString(), KBArray);
                                 break;
 				}
                             }
