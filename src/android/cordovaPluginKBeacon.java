@@ -93,25 +93,28 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
 				case KBAdvType.EddyTLM: {
 		                        KBAdvPacketEddyTLM advTLM = (KBAdvPacketEddyTLM) advPacket;
+					JSONArray KBArray = new JSONArray();
 		                        KBArray.put(advTLM.getBatteryLevel());
 		                        KBArray.put(advTLM.getTemperature());
 		                        KBArray.put(advTLM.getAdvCount());
-					mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+					mBeaconsDictory.put(advTLM.getBatteryLevel().toString(), KBArray);
 	                        break;
 	                        }
 
 				case KBAdvType.EddyUID: {
 		                        KBAdvPacketEddyUID advUID = (KBAdvPacketEddyUID) advPacket;
+					JSONArray KBArray = new JSONArray();
 		                        KBArray.put(advUID.getNid());
 		                        KBArray.put(advUID.getSid());
-					mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+					mBeaconsDictory.put(advUID.getNid().toString(), KBArray);
                             	break;
                         	}
 
                        		case KBAdvType.EddyURL: {
 		                        KBAdvPacketEddyURL advURL = (KBAdvPacketEddyURL) advPacket;
+					JSONArray KBArray = new JSONArray();
 		                        KBArray.put(advURL.getUrl());
-					mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
+					mBeaconsDictory.put(advURL.getUrl().toString(), KBArray);
                             	break;
                         	}
 
