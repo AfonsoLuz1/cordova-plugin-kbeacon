@@ -76,7 +76,8 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             public void onBeaconDiscovered(KBeacon[] beacons) {
                 for (KBeacon beacon: beacons){
 
-                    //mBeaconsDictory.put(beacon.getMac(), beacon);
+		mBeaconsDictory.put(beacon.getMac(), beacon);
+			
                     for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
                         	case KBAdvType.IBeacon: {
@@ -88,8 +89,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	                                KBArray.put(advIBeacon.getMinorID());
 	                                KBArray.put(advIBeacon.getMajorID());
 					KBArray.put(beacon.getBatteryPercent());
-					KBArray.put(advPacket.getAdvType());
-					KBArray.put(KBAdvType.IBeacon() + " " + KBAdvType.EddyTLM() + " " + KBAdvType.Sensor() + " "+ KBAdvType.EddyUID() + " " + KBAdvType.System );
                                     	mBeaconsDictory.put(advIBeacon.getMinorID().toString(), KBArray);
                                 break;
                                 }
