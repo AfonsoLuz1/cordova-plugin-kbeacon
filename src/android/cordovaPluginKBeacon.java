@@ -231,7 +231,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         }
 	    
         if ("connectToDevice".equalsIgnoreCase(action)) {
-            this.connectToDevice(callback);
+            this.connectToDevice(deviceAddress, password, maxTimeout, callback);
             return true;
         }	    
 
