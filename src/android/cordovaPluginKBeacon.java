@@ -284,6 +284,9 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         mBeaconsMgr.stopScanning();
     }
 
+    private void disconnect(){
+	mBeacon.disconnect();
+    }
 	private KBeacon mBeacon;
 		
 	// Add these fields to your class
