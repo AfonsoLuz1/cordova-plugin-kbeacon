@@ -38,6 +38,8 @@ import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvType;
 import com.kkmcn.kbeaconlib2.KBeacon;
 import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 
+import com.kkmcn.kbeaconlib2.KBConnState;
+
 import java.util.Locale;
 import java.util.HashMap;
 
@@ -275,6 +277,8 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         mBeaconsMgr.stopScanning();
     }
 
+private KBeacon mBeacon;
+	
 // Add these fields to your class
 private int nDeviceLastState = -1;
 private String mDeviceAddress = null;
