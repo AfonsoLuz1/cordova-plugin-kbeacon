@@ -203,7 +203,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         mBeaconsMgr.setScanMinRssiFilter(SCAN_MIN_RSSI_FILTER);
         mBeaconsMgr.setScanMode(KBeaconsMgr.SCAN_MODE_LOW_LATENCY);
 
-
     }
 
     @Override
@@ -238,7 +237,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
         return false;
     }
-
 
 
     private void getDiscoveredDevices(CallbackContext callbackContext){
@@ -283,39 +281,48 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         mBeaconsMgr.stopScanning();
     }
 
-private KBeacon mBeacon;
+	private KBeacon mBeacon;
+		
+	// Add these fields to your class
+	private int nDeviceLastState = -1;
+	private String mDeviceAddress = null;
+	private CallbackContext connectionCallback;
 	
-// Add these fields to your class
-private int nDeviceLastState = -1;
-private String mDeviceAddress = null;
-private CallbackContext connectionCallback;
-
-// Add this method to your class to perform device connection
-public void connectToDevice(String deviceAddress, String password, int maxTimeout, CallbackContext callbackContext) {
-    this.connectionCallback = callbackContext;
-    this.mDeviceAddress = deviceAddress;
-
-    mBeacon = mBeaconsMgr.getBeacon(deviceAddress);
-    if (mBeacon == null) {
-        callbackContext.error("Beacon not found for address: " + deviceAddress);
-        return;
-    }
-     mBeacon.connect(password, maxTimeout, connectionDelegate);    
-}
-
-// Add the connection delegate to handle state changes
-private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
-    public void onConnStateChange(KBeacon beacon, KBConnState state, int nReason) {
-         
-	if (state == KBConnState.Connected) {
-            connectionCallback.success("Connected to beacon");
-	} 
+	// Add this method to your class to perform device connection
+	public void connectToDevice(String deviceAddress, String password, int maxTimeout, CallbackContext callbackContext) {
+	    this.connectionCallback = callbackContext;
+	    this.mDeviceAddress = deviceAddress;
 	
-	else if (state == KBConnState.Disconnected) {
-            connectionCallback.success("Disconnected from beacon.");
+	    mBeacon = mBeaconsMgr.getBeacon(deviceAddress);
+	    if (mBeacon == null) {
+	        callbackContext.error("Beacon not found for address: " + deviceAddress);
+	        return;
+	    }
+	     mBeacon.connect(password, maxTimeout, connectionDelegate);    
 	}
-    }
-};
+	
+	// Add the connection delegate to handle state changes
+	private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
+	    public void onConnStateChange(KBeacon beacon, KBConnState state, int nReason) {
+	         
+		if (state == KBConnState.Connected) {
+	            connectionCallback.success("Connected to beacon");
+		} 
+		
+		else if (state == KBConnState.Connecting) {
+	            connectionCallback.success("Device start connecting.");
+		}
+			
+		else if (state == KBConnState.Disconnecting) {
+	            connectionCallback.success("Device start disconnecting.");
+		}
+		
+		else if (state == KBConnState.Disconnected) {
+	            connectionCallback.success("Disconnected from beacon.");
+		}
+		
+	    }
+	};
 
 
 	
