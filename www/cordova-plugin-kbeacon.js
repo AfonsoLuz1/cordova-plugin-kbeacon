@@ -25,6 +25,10 @@ KBeacon.prototype.getDiscoveredDevicesiOS = function(successCallback, errorCallb
     cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'getDiscoveredDevicesiOS', []);
 }
 
+KBeacon.prototype.connectToDevice: function (mac, password, timeout, useEnhanced, successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "connectToDevice", []);
+}
+
 
 // Installation constructor that binds ToastyPlugin to window
 KBeacon.install = function() {
