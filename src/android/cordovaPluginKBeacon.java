@@ -287,7 +287,7 @@ private CallbackContext connectionCallback;
 
 // Add this method to your class to perform device connection
 @Override
-public void connectToDevice(String deviceAddress, String password, int maxTimeout, boolean useEnhanced, CallbackContext callbackContext) {
+public void connectToDevice(String deviceAddress, String password, int maxTimeout, CallbackContext callbackContext) {
     this.connectionCallback = callbackContext;
     this.mDeviceAddress = deviceAddress;
 
@@ -296,19 +296,8 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
         callbackContext.error("Beacon not found for address: " + deviceAddress);
         return;
     }
-
-    if (useEnhanced) {
-        KBConnPara connPara = new KBConnPara();
-        connPara.syncUtcTime = true;
-        connPara.readCommPara = true;
-        connPara.readSlotPara = true;
-        connPara.readTriggerPara = false;
-        connPara.readSensorPara = false;
-
-        mBeacon.connectEnhanced(password, maxTimeout, connPara, connectionDelegate);
-    } else {
-        mBeacon.connect(password, maxTimeout, connectionDelegate);
-    }
+     mBeacon.connect(password, maxTimeout, connectionDelegate);
+    
 }
 
 
