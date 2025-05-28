@@ -231,8 +231,11 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         }
 	    
         if ("connectToDevice".equalsIgnoreCase(action)) {
-            this.connectToDevice(deviceAddress, password, maxTimeout, callback);
-            return true;
+		String deviceAddress = args.getString(0);  // MAC address of beacon
+        	String password = args.getString(1);       // Usually "000000" by default
+        	int maxTimeout = args.getInt(2);           // Timeout in milliseconds
+
+        	this.connectToDevice(deviceAddress, password, maxTimeout, callback);
         }	    
 
         return false;
