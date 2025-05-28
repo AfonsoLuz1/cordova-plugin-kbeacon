@@ -274,6 +274,73 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
     private void stopScanning(){
         mBeaconsMgr.stopScanning();
     }
+
+// Add these fields to your class
+private int nDeviceLastState = -1;
+private String mDeviceAddress = null;
+private CallbackContext connectionCallback;
+
+// Add this method to your class to perform device connection
+public void connectToDevice(String deviceAddress, String password, int maxTimeout, boolean useEnhanced, CallbackContext callbackContext) {
+    this.connectionCallback = callbackContext;
+    this.mDeviceAddress = deviceAddress;
+
+    mBeacon = mBeaconsMgr.getBeacon(deviceAddress);
+    if (mBeacon == null) {
+        callbackContext.error("Beacon not found for address: " + deviceAddress);
+        return;
+    }
+
+    if (useEnhanced) {
+        KBConnPara connPara = new KBConnPara();
+        connPara.syncUtcTime = true;
+        connPara.readCommPara = true;
+        connPara.readSlotPara = true;
+        connPara.readTriggerPara = false;
+        connPara.readSensorPara = false;
+
+        mBeacon.connectEnhanced(password, maxTimeout, connPara, connectionDelegate);
+    } else {
+        mBeacon.connect(password, maxTimeout, connectionDelegate);
+    }
+}
+
+// Add the connection delegate to handle state changes
+private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
+    @Override
+    public void onConnStateChange(KBeacon beacon, int state, int nReason) {
+        nDeviceLastState = state;
+
+        switch (state) {
+            case KBConnState.Connected:
+                connectionCallback.success("device has connected");
+                break;
+
+            case KBConnState.Connecting:
+                connectionCallback.success("device start connecting");
+                break;
+
+            case KBConnState.Disconnecting:
+                connectionCallback.success("device start disconnecting");
+                break;
+
+            case KBConnState.Disconnected:
+                String reasonMessage;
+                if (nReason == KBConnectionEvent.ConnAuthFail) {
+                    reasonMessage = "password error";
+                } else if (nReason == KBConnectionEvent.ConnTimeout) {
+                    reasonMessage = "connection timeout";
+                } else {
+                    reasonMessage = "connection other error, reason:" + nReason;
+                }
+
+                toastShow(reasonMessage);
+                connectionCallback.success("device has disconnected: " + nReason);
+                break;
+        }
+    }
+};
+
 	
     private void checkPermissions(CallbackContext callbackContext){
         checkBluetoothPermitAllowed();
