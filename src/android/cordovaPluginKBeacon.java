@@ -291,59 +291,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	}
     }
 	
- private void startconnecting(CallbackContext callbackContext){
-   
-//connect to device with default parameters
-mBeacon.connect(password, max_timeout, connectionDelegate);
-//or
-//connect to device with specified parameters
-//When the app is connected to the KBeacon device, the app can specify which the configuration parameters to be read,
-//The parameter that can be read include: common parameters, advertisement parameters, trigger parameters, and sensor parameters
- KBConnPara connPara = new KBConnPara();
-           connPara.syncUtcTime = true;
-           connPara.readCommPara = true;
-           connPara.readSlotPara = true;
-           connPara.readTriggerPara = false;
-           connPara.readSensorPara = false;
- mBeacon.connectEnhanced(password, max_timeout, connPara, connectionDelegate);
- }
-	
-@Override
- private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate()
-{
-   public void onConnStateChange(KBeacon var1, int state, int nReason)
-   {
-       if (state == KBConnState.Connected)
-       {
-           callbackContext.success("device has connected");
-           nDeviceLastState = state;
-       }
-       else if (state == KBConnState.Connecting)
-       {
-           callbackContext.success("device start connecting");
-           nDeviceLastState = state;
-       }
-       else if (state == KBConnState.Disconnecting)
-       {
-           callbackContext.success("device start disconnecting");
-           nDeviceLastState = state;
-       }
-       else if (state == KBConnState.Disconnected)
-       {
-           if (nReason == KBConnectionEvent.ConnAuthFail) {
-               toastShow("password error");
-           } else if (nReason == KBConnectionEvent.ConnTimeout) {
-               toastShow("connection timeout");
-           } else {
-               toastShow("connection other error, reason:" + nReason);
-           }
-
-           nDeviceLastState = state;
-           callbackContext.success("device has disconnected:" +  nReason);
-       }
-   }
-}
-	
 
     private void checkPermissions(CallbackContext callbackContext){
         checkBluetoothPermitAllowed();
