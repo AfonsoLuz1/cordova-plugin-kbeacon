@@ -300,8 +300,7 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
 
 // Add the connection delegate to handle state changes
 private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
-    @Override
-    public void onConnStateChange(KBeacon beacon, int state, int nReason) {
+    public void onConnStateChange(KBeacon beacon, KBConnState state, int nReason) {
         nDeviceLastState = state;
 
 
