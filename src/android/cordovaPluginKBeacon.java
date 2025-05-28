@@ -303,11 +303,11 @@ private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDele
     public void onConnStateChange(KBeacon beacon, KBConnState state, int nReason) {
          
 	if (state == KBConnState.Connected) {
-            callbackContext.success("Connected to beacon");
+            connectionCallback.success("Connected to beacon");
 	} 
 	
 	else if (state == KBConnState.Disconnected) {
-            callbackContext.success("Disconnected from beacon.");
+            connectionCallback.success("Disconnected from beacon.");
 	}
     }
 };
