@@ -301,9 +301,14 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
 // Add the connection delegate to handle state changes
 private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
     public void onConnStateChange(KBeacon beacon, KBConnState state, int nReason) {
-        nDeviceLastState = state;
-
-
+         
+	if (state == KBConnState.Connected) {
+            callbackContext.success("Connected to beacon");
+	} 
+	
+	else if (state == KBConnState.Disconnected) {
+            callbackContext.success("Disconnected from beacon.");
+	}
     }
 };
 
