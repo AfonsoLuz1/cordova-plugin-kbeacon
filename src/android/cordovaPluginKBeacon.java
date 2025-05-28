@@ -286,7 +286,6 @@ private String mDeviceAddress = null;
 private CallbackContext connectionCallback;
 
 // Add this method to your class to perform device connection
-@Override
 public void connectToDevice(String deviceAddress, String password, int maxTimeout, CallbackContext callbackContext) {
     this.connectionCallback = callbackContext;
     this.mDeviceAddress = deviceAddress;
@@ -296,11 +295,17 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
         callbackContext.error("Beacon not found for address: " + deviceAddress);
         return;
     }
-     mBeacon.connect(password, maxTimeout, connectionDelegate);
-    
+     mBeacon.connect(password, maxTimeout, this);    
 }
 
+// Add the connection delegate to handle state changes
+private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
+    @Override
+    public void onConnStateChange(KBeacon beacon, int state, int nReason) {
+        nDeviceLastState = state;
 
+    }
+};
 
 	
     private void checkPermissions(CallbackContext callbackContext){
