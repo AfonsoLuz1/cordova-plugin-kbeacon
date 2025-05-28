@@ -190,7 +190,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
          * Validate if Manager of Beacons is supported
          */
         if (mBeaconsMgr == null){
-            toastShow("El dispositivo no puede leer beacons");
+            toastShow("The device cannot read beacons");
         }
 
         /**
@@ -275,6 +275,60 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         mBeaconsMgr.stopScanning();
     }
 
+	private KBeacon mBeacon;
+	
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+	
+	if (requestCode == PERMISSION_CONNECT) {
+	    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+		mBeacon.connect(mPref.getPassword(mDeviceAddress),
+			20 * 1000,
+			this);
+	    } else {
+		toastShow("The app need ble connection permission for start ble scanning");
+	    }
+	}
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.menu_connect){
+
+            if (DevicePannelActivity.READ_DEFAULT_PARAMETERS)
+            {
+                //connect to device with default parameters
+                if (check2RequestPermission()) {
+                    mBeacon.connect(mPref.getPassword(mDeviceAddress), 20 * 1000, this);
+                }
+            }
+            else
+            {
+                //connect to device with specified parameters
+                //When the app is connected to the KBeacon device, the app can specify which the configuration parameters to be read,
+                //The parameter that can be read include: common parameters, advertisement parameters, trigger parameters, and sensor parameters
+                KBConnPara connPara = new KBConnPara();
+                connPara.syncUtcTime = true;
+                connPara.readCommPara = true;
+                connPara.readSlotPara = true;
+                connPara.readTriggerPara = false;
+                connPara.readSensorPara = false;
+                mBeacon.connectEnhanced(mPref.getPassword(mDeviceAddress), 20 * 1000,
+                        connPara,
+                        this);
+            }
+
+            invalidateOptionsMenu();
+        }
+        else if(id == R.id.menu_disconnect){
+            mBeacon.disconnect();
+            invalidateOptionsMenu();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+	
+
     private void checkPermissions(CallbackContext callbackContext){
         checkBluetoothPermitAllowed();
         if (!checkBluetoothPermitAllowed()) {
@@ -326,7 +380,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         }
         return bHasPermission;
     }
-
 
 
     public static boolean jsonArrayContains(JSONArray jsonArray, Object value) {
