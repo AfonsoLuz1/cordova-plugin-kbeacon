@@ -298,6 +298,16 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
      mBeacon.connect(password, maxTimeout, connectionDelegate);    
 }
 
+// Add the connection delegate to handle state changes
+private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
+    public void onConnStateChange(KBeacon beacon, int state, int nReason) {
+        nDeviceLastState = state;
+
+
+    }
+};
+
+
 	
     private void checkPermissions(CallbackContext callbackContext){
         checkBluetoothPermitAllowed();
