@@ -286,6 +286,7 @@ private String mDeviceAddress = null;
 private CallbackContext connectionCallback;
 
 // Add this method to your class to perform device connection
+@Override
 public void connectToDevice(String deviceAddress, String password, int maxTimeout, boolean useEnhanced, CallbackContext callbackContext) {
     this.connectionCallback = callbackContext;
     this.mDeviceAddress = deviceAddress;
@@ -310,38 +311,7 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
     }
 }
 
-// Add the connection delegate to handle state changes
-private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
-    public void onConnStateChange(KBeacon beacon, int state, int nReason) {
-        nDeviceLastState = state;
 
-        if (state == KBConnState.Connected){
-                connectionCallback.success("device has connected");
-	}
-
-         else if (state == KBConnState.Connecting){
-                connectionCallback.success("device start connecting");
-         }
-
-         else if (state == KBConnState.Disconnecting){
-                connectionCallback.success("device start disconnecting");
-         }
-
-         else if (state == KBConnState.Disconnected){
-                String reasonMessage;
-                if (nReason == KBConnectionEvent.ConnAuthFail) {
-                    reasonMessage = "password error";
-                } else if (nReason == KBConnectionEvent.ConnTimeout) {
-                    reasonMessage = "connection timeout";
-                } else {
-                    reasonMessage = "connection other error, reason:" + nReason;
-                }
-
-                toastShow(reasonMessage);
-                connectionCallback.success("device has disconnected: " + nReason);
-         }
-      }
-};
 
 	
     private void checkPermissions(CallbackContext callbackContext){
