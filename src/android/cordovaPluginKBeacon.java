@@ -295,7 +295,7 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
         callbackContext.error("Beacon not found for address: " + deviceAddress);
         return;
     }
-     mBeacon.connect(password, maxTimeout, this);    
+     mBeacon.connect(password, maxTimeout, connectionDelegate);    
 }
 
 	
