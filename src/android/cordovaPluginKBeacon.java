@@ -274,24 +274,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
     private void stopScanning(){
         mBeaconsMgr.stopScanning();
     }
-
-	private KBeacon mBeacon;
 	
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-	super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-	
-	if (requestCode == PERMISSION_CONNECT) {
-	    if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-		mBeacon.connect(mPref.getPassword(mDeviceAddress),
-			20 * 1000,
-			this);
-	    } else {
-		toastShow("The app need ble connection permission for start ble scanning");
-	    }
-	}
-    }
-	
-
     private void checkPermissions(CallbackContext callbackContext){
         checkBluetoothPermitAllowed();
         if (!checkBluetoothPermitAllowed()) {
