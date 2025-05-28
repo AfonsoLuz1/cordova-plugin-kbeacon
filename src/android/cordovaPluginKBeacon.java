@@ -39,6 +39,7 @@ import com.kkmcn.kbeaconlib2.KBeacon;
 import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 
 import com.kkmcn.kbeaconlib2.KBConnState;
+import com.kkmcn.kbeaconlib2.KBConnectionEvent;
 
 import java.util.Locale;
 import java.util.HashMap;
@@ -311,24 +312,22 @@ public void connectToDevice(String deviceAddress, String password, int maxTimeou
 
 // Add the connection delegate to handle state changes
 private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDelegate() {
-    @Override
     public void onConnStateChange(KBeacon beacon, int state, int nReason) {
         nDeviceLastState = state;
 
-        switch (state) {
-            case KBConnState.Connected:
+        if (state == KBConnState.Connected){
                 connectionCallback.success("device has connected");
-                break;
+	}
 
-            case KBConnState.Connecting:
+         else if (state == KBConnState.Connecting){
                 connectionCallback.success("device start connecting");
-                break;
+         }
 
-            case KBConnState.Disconnecting:
+         else if (state == KBConnState.Disconnecting){
                 connectionCallback.success("device start disconnecting");
-                break;
+         }
 
-            case KBConnState.Disconnected:
+         else if (state == KBConnState.Disconnected){
                 String reasonMessage;
                 if (nReason == KBConnectionEvent.ConnAuthFail) {
                     reasonMessage = "password error";
@@ -340,9 +339,8 @@ private KBeacon.ConnStateDelegate connectionDelegate = new KBeacon.ConnStateDele
 
                 toastShow(reasonMessage);
                 connectionCallback.success("device has disconnected: " + nReason);
-                break;
-        }
-    }
+         }
+      }
 };
 
 	
