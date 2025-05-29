@@ -77,14 +77,14 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
             @Override
             public void onBeaconDiscovered(KBeacon[] beacons) {
-                for (KBeacon beacon: beacons){
+                for (KBeacon pbeacon: beacons){
 	        mBeaconsDictory = new HashMap<>(50);		
 		
 		JSONArray KBArray = new JSONArray();
-		KBArray.put(beacon.getName());
-		KBArray.put(beacon.getRssi()); 
-		KBArray.put(beacon.getBatteryPercent());
-		KBArray.put(beacon.getMac());
+		KBArray.put(pbeacon.getName());
+		KBArray.put(pbeacon.getRssi()); 
+		KBArray.put(pbeacon.getBatteryPercent());
+		KBArray.put(pbeacon.getMac());
 			
                     for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
