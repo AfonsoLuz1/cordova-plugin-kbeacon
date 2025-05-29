@@ -338,9 +338,9 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	};
 
 //ring device
-    public void ringDevice() {
+    public void ringDevice(CallbackContext callbackContext) {
         if (!mBeacon.isConnected()) {
-            toastShow("Device is not connected");
+            callbackContext.error("Device is not connected");
             return;
         }
 
@@ -348,7 +348,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         final KBCfgCommon cfgCommon = (KBCfgCommon)mBeacon.getCommonCfg();
         if (cfgCommon != null && !cfgCommon.isSupportBeep())
         {
-            toastShow("device does not support ring feature");
+            callbackContext.error("device does not support ring feature");
             return;
         }
 
@@ -376,11 +376,11 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             public void onActionComplete(boolean bConfigSuccess, KBException error) {
                 if (bConfigSuccess)
                 {
-                    toastShow("send command to beacon success");
+                    callbackContext.error("send command to beacon success");
                 }
                 else
                 {
-                    toastShow("send command to beacon error:" + error.errorCode);
+                    connectionCallback.success("send command to beacon error:" + error.errorCode);
                 }
             }
         });
