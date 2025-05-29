@@ -353,7 +353,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         }
 
         HashMap<String, Object> cmdPara = new HashMap<>();
-        try {
             cmdPara.put("msg", "ring");
             cmdPara.put("ringTime", 20000);   //ring times, uint is ms
 
@@ -371,11 +370,10 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             cmdPara.put("ringType", ringType);  //beep and LED flash
             cmdPara.put("ledOn", 100);   //valid when ringType set to 0x2/0x4
             cmdPara.put("ledOff", 900); //valid when ringType set to 0x2/0x4
-        }catch (JSONException exception)
-        {
+
             exception.printStackTrace();
             return;
-        }
+
 
         mBeacon.sendCommand(cmdPara, new KBeacon.ActionCallback() {
             @Override
