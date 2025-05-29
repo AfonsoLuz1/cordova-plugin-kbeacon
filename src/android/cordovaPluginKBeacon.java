@@ -371,10 +371,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             cmdPara.put("ledOn", 100);   //valid when ringType set to 0x2/0x4
             cmdPara.put("ledOff", 900); //valid when ringType set to 0x2/0x4
 
-            exception.printStackTrace();
-            return;
-
-
         mBeacon.sendCommand(cmdPara, new KBeacon.ActionCallback() {
             @Override
             public void onActionComplete(boolean bConfigSuccess, KBException error) {
