@@ -86,7 +86,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		KBArray.put(pbeacon.getBatteryPercent());
 		KBArray.put(pbeacon.getMac());
 			
-                    for (KBAdvPacketBase advPacket : beacon.allAdvPackets()) {
+                    for (KBAdvPacketBase advPacket : pbeacon.allAdvPackets()) {
                         switch (advPacket.getAdvType()) {
                         	case KBAdvType.IBeacon: {
 	                                KBAdvPacketIBeacon advIBeacon = (KBAdvPacketIBeacon) advPacket;
@@ -164,7 +164,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 				}
                             }
                         }
-			mBeaconsDictory.put(beacon.getRssi().toString(), KBArray);
+			mBeaconsDictory.put(pbeacon.getRssi().toString(), KBArray);
                     }
 
 
