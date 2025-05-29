@@ -26,7 +26,7 @@ KBeacon.prototype.getDiscoveredDevicesiOS = function(successCallback, errorCallb
 }
 
 KBeacon.prototype.disconnect = function () {
-    cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "disconnect", []);
+    cordova.exec(null, null, "cordovaPluginKBeacon", "disconnect", []);
 }
 
 
