@@ -352,7 +352,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             return;
         }
 
-        JSONObject cmdPara = new JSONObject();
+        HashMap<String, Object> cmdPara = new HashMap<>();
         try {
             cmdPara.put("msg", "ring");
             cmdPara.put("ringTime", 20000);   //ring times, uint is ms
