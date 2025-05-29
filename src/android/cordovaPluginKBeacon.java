@@ -338,7 +338,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	};
 
 //ring device
-    private Button mRingButton;
     public void ringDevice() {
         if (!mBeacon.isConnected()) {
             toastShow("Device is not connected");
@@ -353,7 +352,6 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             return;
         }
 
-        mRingButton.setEnabled(false);
         JSONObject cmdPara = new JSONObject();
         try {
             cmdPara.put("msg", "ring");
@@ -379,11 +377,9 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             return;
         }
 
-        mRingButton.setEnabled(false);
         mBeacon.sendCommand(cmdPara, new KBeacon.ActionCallback() {
             @Override
             public void onActionComplete(boolean bConfigSuccess, KBException error) {
-                mRingButton.setEnabled(true);
                 if (bConfigSuccess)
                 {
                     toastShow("send command to beacon success");
