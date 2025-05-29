@@ -41,6 +41,7 @@ import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 import com.kkmcn.kbeaconlib2.KBConnState;
 import com.kkmcn.kbeaconlib2.KBConnectionEvent;
 import com.kkmcn.kbeaconlib2.KBCfgPackage.KBCfgCommon;
+import com.kkmcn.kbeaconlib2.KBException;
 
 import java.util.Locale;
 import java.util.HashMap;
@@ -337,6 +338,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	};
 
 //ring device
+    private Button mRingButton;
     public void ringDevice() {
         if (!mBeacon.isConnected()) {
             toastShow("Device is not connected");
