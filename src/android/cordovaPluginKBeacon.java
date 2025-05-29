@@ -40,6 +40,7 @@ import com.kkmcn.kbeaconlib2.KBeaconsMgr;
 
 import com.kkmcn.kbeaconlib2.KBConnState;
 import com.kkmcn.kbeaconlib2.KBConnectionEvent;
+import com.kkmcn.kbeaconlib2.KBCfgPackage.KBCfgCommon;
 
 import java.util.Locale;
 import java.util.HashMap;
@@ -335,7 +336,63 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	    }
 	};
 
+//ring device
+    public void ringDevice() {
+        if (!mBeacon.isConnected()) {
+            toastShow("Device is not connected");
+            return;
+        }
 
+        //check capability
+        final KBCfgCommon cfgCommon = (KBCfgCommon)mBeacon.getCommonCfg();
+        if (cfgCommon != null && !cfgCommon.isSupportBeep())
+        {
+            toastShow("device does not support ring feature");
+            return;
+        }
+
+        mRingButton.setEnabled(false);
+        JSONObject cmdPara = new JSONObject();
+        try {
+            cmdPara.put("msg", "ring");
+            cmdPara.put("ringTime", 20000);   //ring times, uint is ms
+
+            // 0: stop ring
+            // 0x1: Beep
+            // 0x2: LED flash
+            // 0x4: vibration
+            int ringType = 0x2;   //LED flash default
+
+            //check if need beep
+            if (cfgCommon != null && !cfgCommon.isSupportBeep())
+            {
+                ringType = ringType | 0x1;
+            }
+            cmdPara.put("ringType", ringType);  //beep and LED flash
+            cmdPara.put("ledOn", 100);   //valid when ringType set to 0x2/0x4
+            cmdPara.put("ledOff", 900); //valid when ringType set to 0x2/0x4
+        }catch (JSONException exception)
+        {
+            exception.printStackTrace();
+            return;
+        }
+
+        mRingButton.setEnabled(false);
+        mBeacon.sendCommand(cmdPara, new KBeacon.ActionCallback() {
+            @Override
+            public void onActionComplete(boolean bConfigSuccess, KBException error) {
+                mRingButton.setEnabled(true);
+                if (bConfigSuccess)
+                {
+                    toastShow("send command to beacon success");
+                }
+                else
+                {
+                    toastShow("send command to beacon error:" + error.errorCode);
+                }
+            }
+        });
+    }
 	
     private void checkPermissions(CallbackContext callbackContext){
         checkBluetoothPermitAllowed();
