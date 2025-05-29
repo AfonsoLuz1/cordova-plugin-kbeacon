@@ -29,7 +29,9 @@ KBeacon.prototype.disconnect = function () {
     cordova.exec(null, null, "cordovaPluginKBeacon", "disconnect", []);
 }
 
-
+KBeacon.prototype.ringDevice = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "ringDevice", []);
+};
 
 
 // Installation constructor that binds ToastyPlugin to window
