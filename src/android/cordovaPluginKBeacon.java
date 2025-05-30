@@ -365,7 +365,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             // 0x1: Beep
             // 0x2: LED flash
             // 0x4: vibration
-            int ringType = 0x2;   //LED flash default
+            int ringType = 0x1 | 0x2 | 0x4;   //LED flash default
 
             //check if need beep
             if (cfgCommon != null && !cfgCommon.isSupportBeep())
