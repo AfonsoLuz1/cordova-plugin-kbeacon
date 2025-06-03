@@ -79,9 +79,9 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
             @Override
             public void onBeaconDiscovered(KBeacon[] beacons) {
-                for (KBeacon pbeacon: beacons){
-	        mBeaconsDictory = new HashMap<>(50);		
-		
+                mBeaconsDictory = new HashMap<>(50);
+		for (KBeacon pbeacon: beacons){
+	        				
 		JSONArray KBArray = new JSONArray();
 		KBArray.put(pbeacon.getName());
 		KBArray.put(pbeacon.getRssi()); 
