@@ -238,6 +238,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
         	int maxTimeout = args.getInt(2);           // Timeout in milliseconds
 
         	this.connectToDevice(deviceAddress, password, maxTimeout, callback);
+		return true;
         }
 
 	if ("disconnect".equalsIgnoreCase(action)) {
