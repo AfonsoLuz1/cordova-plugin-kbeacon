@@ -328,13 +328,13 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	            connectionCallback.success("Connected to beacon");
 		} 
 		
-		else if (state == KBConnState.Connecting) {
+		/*else if (state == KBConnState.Connecting) {
 	            connectionCallback.success("Device start connecting.");
 		}
 			
 		else if (state == KBConnState.Disconnecting) {
 	            connectionCallback.success("Device start disconnecting.");
-		}
+		}*/
 		
 		else if (state == KBConnState.Disconnected) {
 	            connectionCallback.success("Disconnected from beacon.");
