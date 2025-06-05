@@ -388,7 +388,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                 }
                 else
                 {
-                    connectionCallback.error("send command to beacon error:" + error.errorCode);
+                    callbackContext.error("send command to beacon error:" + error.errorCode);
                 }
             }
         });
