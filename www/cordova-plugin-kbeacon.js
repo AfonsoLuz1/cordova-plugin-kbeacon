@@ -2,29 +2,32 @@ function KBeacon() {}
 
 // Android
 
-KBeacon.prototype.startScan = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'startScan', []);
-}
-
-KBeacon.prototype.stopScanning = function() {
-    cordova.exec(null, null, 'cordovaPluginKBeacon', 'stopScanning', []);
-}
-
 KBeacon.prototype.checkPermissions = function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'checkPermissions', []);
+}
+
+KBeacon.prototype.startScan = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'startScan', []);
 }
 
 KBeacon.prototype.getDiscoveredDevices = function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'getDiscoveredDevices', []);
 }
 
+KBeacon.prototype.connectToDevice = function (mac, password, timeout, successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "connectToDevice", []);
+};
+
+KBeacon.prototype.ringDevice = function(ringType, ringTime, successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "ringDevice", []);
+};
 
 KBeacon.prototype.disconnect = function () {
     cordova.exec(null, null, "cordovaPluginKBeacon", "disconnect", []);
-}
+};
 
-KBeacon.prototype.ringDevice = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "ringDevice", []);
+KBeacon.prototype.stopScanning = function() {
+    cordova.exec(null, null, 'cordovaPluginKBeacon', 'stopScanning', []);
 };
 
 // iOS
