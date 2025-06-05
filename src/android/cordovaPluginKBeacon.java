@@ -250,7 +250,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		int ringType = args.getInt(0);    // First argument from JS
 		int ringTime = args.getInt(1);    // Second argument from JS
 	    
-		this.ringDevice(ringType, ringTime, callbackContext);
+		this.ringDevice(ringType, ringTime, callback);
 	    	return true;
 	}
 
