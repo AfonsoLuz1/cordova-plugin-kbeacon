@@ -344,7 +344,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	};
 
 //ring device
-    public void ringDevice(CallbackContext callbackContext) {
+    public void ringDevice(int ringType, int ringtime, CallbackContext callbackContext) {
         if (!mBeacon.isConnected()) {
             callbackContext.error("Device is not connected");
             return;
@@ -360,13 +360,12 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 
         HashMap<String, Object> cmdPara = new HashMap<>();
             cmdPara.put("msg", "ring");
-            cmdPara.put("ringTime", 20000);   //ring times, uint is ms
+            cmdPara.put("ringTime", ringtime);   //ring times, uint is ms
 
             // 0: stop ring
             // 0x1: Beep
             // 0x2: LED flash
             // 0x4: vibration
-            int ringType = 0x1 | 0x2 | 0x4;   //LED flash default
 
             //check if need beep
             if (cfgCommon != null && !cfgCommon.isSupportBeep())
@@ -382,11 +381,11 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
             public void onActionComplete(boolean bConfigSuccess, KBException error) {
                 if (bConfigSuccess)
                 {
-                    callbackContext.error("send command to beacon success");
+                    callbackContext.success("send command to beacon success");
                 }
                 else
                 {
-                    connectionCallback.success("send command to beacon error:" + error.errorCode);
+                    connectionCallback.error("send command to beacon error:" + error.errorCode);
                 }
             }
         });
