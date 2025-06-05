@@ -1,5 +1,7 @@
 function KBeacon() {}
 
+// Android
+
 KBeacon.prototype.startScan = function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'startScan', []);
 }
@@ -17,14 +19,6 @@ KBeacon.prototype.getDiscoveredDevices = function(successCallback, errorCallback
 }
 
 
-KBeacon.prototype.startScaniOS = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'startScaniOS', []);
-}
-
-KBeacon.prototype.getDiscoveredDevicesiOS = function(successCallback, errorCallback) {
-    cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'getDiscoveredDevicesiOS', []);
-}
-
 KBeacon.prototype.disconnect = function () {
     cordova.exec(null, null, "cordovaPluginKBeacon", "disconnect", []);
 }
@@ -33,8 +27,17 @@ KBeacon.prototype.ringDevice = function(successCallback, errorCallback) {
     cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "ringDevice", []);
 };
 
+// iOS
 
-// Installation constructor that binds ToastyPlugin to window
+KBeacon.prototype.startScaniOS = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'startScaniOS', []);
+}
+
+KBeacon.prototype.getDiscoveredDevicesiOS = function(successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, 'cordovaPluginKBeacon', 'getDiscoveredDevicesiOS', []);
+}
+
+// Installation constructor that binds ToastyPlugin to the window
 KBeacon.install = function() {
     if (!window.plugins) {
         window.plugins = {};
