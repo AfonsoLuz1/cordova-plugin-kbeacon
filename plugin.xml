@@ -25,7 +25,7 @@
     </platform>
 
     <platform name="ios">
-        <preference name="UseLegacySwiftLanguageVersion" value="true" />
+        <preference name="USELEGACYSWIFTLANGUAGEVERSION" value="true" />
         
         <engines>
             <engine name="cordova-ios" version=">=5.0.0" />
