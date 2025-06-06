@@ -5,13 +5,17 @@
   "cordova": {
     "id": "app.heroesde4patas.cordova.plugin.kbeacon",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "keywords": [
     "ecosystem:cordova",
     "cordova-android"
   ],
-  "author": "",
-  "license": "ISC"
+  "author": "ISB Global",
+  "license": "ISC",
+  "dependencies": {
+    "cordova-plugin-add-swift-support": "^2.0.2"
+  }
 }
