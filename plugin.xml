@@ -25,9 +25,11 @@
     </platform>
 
     <platform name="ios">
+        <preference name="UseLegacySwiftLanguageVersion" value="true" />
+        
         <engines>
-  <engine name="cordova-ios" version=">=5.0.0" />
-</engines>
+            <engine name="cordova-ios" version=">=5.0.0" />
+        </engines>
 
         <config-file parent="/*" target="config.xml">
             <feature name="cordovaPluginKBeacon">
