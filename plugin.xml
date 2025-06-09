@@ -44,10 +44,6 @@
         <preference name="USELEGACYSWIFTLANGUAGEVERSION" value="true" />
 		
 		
-		<podspec>
-            <pods use-frameworks="true">
-                <pod name="kbeaconlib2" spec="1.1.1" />
-            </pods>
-        </podspec>
+
     </platform>
 </plugin>
