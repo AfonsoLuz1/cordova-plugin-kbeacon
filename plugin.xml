@@ -1,7 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="app.heroesde4patas.cordova.plugin.kbeacon" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordovaPluginKBeacon</name>
-    <js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
+
+	<variable name="SWIFTVERSION" default="5.0" />
+	<variable name="DEPLOYMENT_TARGET" default="14.0" />
+	
+	<js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
         <clobbers target="cordova.plugins.kbeacon" />
     </js-module>
     <platform name="android">
@@ -23,10 +27,7 @@
         <framework src="com.kkmcn.kbeaconlib2:kbeaconlib2:1.1.9" />
         <source-file src="src/android/cordovaPluginKBeacon.java" target-dir="src/app/heroesde4patas/cordova/plugin/kbeacon/cordovaPluginKBeacon" />
     </platform>
-        
-	<variable name="deployment-target" default="5.0" />
-	<variable name="SwiftVersion" default="5.0" />    
-	
+
     <platform name="ios">	    
         <engines>
             <engine name="cordova-ios" version=">=5.0.0" />
@@ -42,8 +43,8 @@
 		
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
 
-	<preference name="deployment-target" value="14.0" />
-	<preference name="SwiftVersion" value="5" />
+	<preference name="deployment-target" value="$DEPLOYMENT_TARGET" />
+	<preference name="SwiftVersion" value="$SWIFTVERSION" />
 	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
 		
     </platform>
