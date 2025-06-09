@@ -23,7 +23,10 @@
         <framework src="com.kkmcn.kbeaconlib2:kbeaconlib2:1.1.9" />
         <source-file src="src/android/cordovaPluginKBeacon.java" target-dir="src/app/heroesde4patas/cordova/plugin/kbeacon/cordovaPluginKBeacon" />
     </platform>
-
+        
+	<variable name="deployment-target" default="5.0" />
+	<variable name="SwiftVersion" default="5.0" />    
+	
     <platform name="ios">	    
         <engines>
             <engine name="cordova-ios" version=">=5.0.0" />
@@ -38,10 +41,7 @@
         </config-file>        				
 		
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
-        
-	<variable name="deployment-target" default="5.0" />
-	<variable name="SwiftVersion" default="5.0" />    
-	
+
 	<preference name="deployment-target" value="14.0" />
 	<preference name="SwiftVersion" value="5" />
 	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
