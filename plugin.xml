@@ -24,9 +24,7 @@
         <source-file src="src/android/cordovaPluginKBeacon.java" target-dir="src/app/heroesde4patas/cordova/plugin/kbeacon/cordovaPluginKBeacon" />
     </platform>
 
-    <platform name="ios">
-	<preference name="SwiftVersion" value="5" />
-	    
+    <platform name="ios">	    
         <engines>
             <engine name="cordova-ios" version=">=5.0.0" />
         </engines>    
@@ -41,7 +39,9 @@
 		
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
         
-	<dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+	<preference name="deployment-target" value="14.0" />
+	<preference name="SwiftVersion" value="5" />
+	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
 		
     </platform>
 </plugin>
