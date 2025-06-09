@@ -39,6 +39,9 @@
 		
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
         
+	<variable name="deployment-target" default="5.0" />
+	<variable name="SwiftVersion" default="5.0" />    
+	
 	<preference name="deployment-target" value="14.0" />
 	<preference name="SwiftVersion" value="5" />
 	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
