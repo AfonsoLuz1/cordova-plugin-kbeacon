@@ -25,6 +25,8 @@
     </platform>
 
     <platform name="ios">
+	<preference name="SwiftVersion" value="5" />
+	    
         <engines>
             <engine name="cordova-ios" version=">=5.0.0" />
         </engines>    
