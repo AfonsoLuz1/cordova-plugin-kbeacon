@@ -27,23 +27,19 @@
     <platform name="ios">
         <engines>
             <engine name="cordova-ios" version=">=5.0.0" />
-        </engines>
-    
+        </engines>    
 		
-		<config-file target="config.xml" parent="/*">
+	<config-file target="config.xml" parent="/*">
             <feature name="cordovaPluginKBeacon">
                 <param name="ios-package" value="cordovaPluginKBeacon" />
                 <param name="onload" value="true" />
-				<param name="onreset" value="true"/>
+		<param name="onreset" value="true"/>
             </feature>
-        </config-file>
-        				
+        </config-file>        				
 		
-		<source-file src="src/ios/cordovaPluginKBeacon.swift" />
-        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
-        <preference name="USELEGACYSWIFTLANGUAGEVERSION" value="true" />
+	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
+        
+	<dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
 		
-		
-
     </platform>
 </plugin>
