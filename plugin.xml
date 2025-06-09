@@ -2,7 +2,7 @@
 <plugin id="app.heroesde4patas.cordova.plugin.kbeacon" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordovaPluginKBeacon</name>
 
-	<variable name="SWIFTVERSION" default="5.0" />
+	<variable name="SWIFTVERSION" default="6.0" />
 	<variable name="DEPLOYMENT_TARGET" default="14.0" />
 	
 	<js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
