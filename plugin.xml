@@ -41,7 +41,25 @@
                 <param name="onload" value="true" />
 		<param name="onreset" value="true"/>
             </feature>
-        </config-file>     
+        </config-file>
+
+	<config-file parent="BuildSettings" target="cordova/build-debug.xcconfig">
+        	<build-settings>
+            		<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
+        	</build-settings>
+    	</config-file>
+
+    	<config-file parent="BuildSettings" target="cordova/build-release.xcconfig">
+        	<build-settings>
+            		<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
+        	</build-settings>
+	</config-file>
+
+	<config-file target="Podfile" parent="/*">Add commentMore actions
+		<edit-config target="use_frameworks!" file="Podfile" mode="merge">
+			<string>use_frameworks!</string>
+		</edit-config>
+	</config-file>
    
 	<preference name="UseSwiftLanguageVersion" value="$USESWIFTLANGUAGEVERSION" />
 	<preference name="SwiftVersion" value="$SWIFTVERSION" />
