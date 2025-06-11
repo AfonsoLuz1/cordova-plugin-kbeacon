@@ -2,7 +2,7 @@
 <plugin id="app.heroesde4patas.cordova.plugin.kbeacon" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordovaPluginKBeacon</name>
 
-	<variable name="SWIFTVERSION" default="6.0" />
+	<variable name="USELEGACYSWIFTLANGUAGEVERSION" default="true" /> 
 	
 	<js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
         <clobbers target="cordova.plugins.kbeacon" />
@@ -42,7 +42,7 @@
 		
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
 
-	<preference name="SwiftVersion" value="$SWIFTVERSION" />
+	<preference name="UseLegacySwiftLanguageVersion" value="$USELEGACYSWIFTLANGUAGEVERSION" />
 	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
 		
     </platform>
