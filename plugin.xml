@@ -1,12 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="app.heroesde4patas.cordova.plugin.kbeacon" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>cordovaPluginKBeacon</name>
-
-	<variable name="USELEGACYSWIFTLANGUAGEVERSION" default="true" /> 
-	
+    <name>cordovaPluginKBeacon</name>	
 	<js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
         <clobbers target="cordova.plugins.kbeacon" />
     </js-module>
+    
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
             <feature name="cordovaPluginKBeacon">
@@ -38,11 +36,26 @@
                 <param name="onload" value="true" />
 		<param name="onreset" value="true"/>
             </feature>
-        </config-file>        				
-		
+        </config-file>     
+
+	<config-file parent="BuildSettings" target="*-Debug.xcconfig">
+		<build-settings>
+			<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
+		</build-settings>
+	</config-file>
+
+	<config-file parent="BuildSettings" target="*-Release.xcconfig">
+		<build-settings>
+			<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
+		</build-settings>
+	</config-file>
+
+	<preference name="UseSwiftLanguageVersion" value="5" />
+	<preference name="SwiftVersion" value="5" />
+	<preference name="pods_use_frameworks" value="true" />
+	
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
 
-	<preference name="UseLegacySwiftLanguageVersion" value="$USELEGACYSWIFTLANGUAGEVERSION" />
 	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
 		
     </platform>
