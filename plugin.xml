@@ -73,7 +73,7 @@
 
 	<pod name="kbeaconlib2" />
 
-	<dependency id="cordova-plugin-add-swift-support"/>
+
 		
     </platform>
 </plugin>
