@@ -33,7 +33,11 @@
     <platform name="ios">	    
         <engines>
             <engine name="cordova-ios" version=">=5.0.0" />
-        </engines>    
+        </engines>
+
+	<config-file target="*-Info.plist" parent="NSBluetoothAlwaysUsageDescription">
+        	<string>Bluetooth is needed to scan for devices.</string>
+	</config-file>
 		
 	<config-file target="config.xml" parent="/*">
             <feature name="cordovaPluginKBeacon">
