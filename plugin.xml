@@ -4,7 +4,7 @@
 
     <variable name="USESWIFTLANGUAGEVERSION" default="true" />
     <variable name="SWIFTVERSION" default="6.0" />
-    <variable name="PODS_USE_FRAMEWORKS" default="true" />
+    <variable name="PODSUSEFRAMEWORKS" default="true" />
 	
     <js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
         <clobbers target="cordova.plugins.kbeacon" />
@@ -64,7 +64,7 @@
 	    
 	<preference name="UseSwiftLanguageVersion" value="$USESWIFTLANGUAGEVERSION" />
 	<preference name="SwiftVersion" value="$SWIFTVERSION" />
-	<preference name="PodsUseFrameworks" value="$PODS_USE_FRAMEWORKS" />
+	<preference name="PodsUseFrameworks" value="$PODSUSEFRAMEWORKS" />
 	
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
 
