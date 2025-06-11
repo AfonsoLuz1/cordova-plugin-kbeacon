@@ -3,7 +3,6 @@
     <name>cordovaPluginKBeacon</name>
 
 	<variable name="SWIFTVERSION" default="6.0" />
-	<variable name="DEPLOYMENT_TARGET" default="14.0" />
 	
 	<js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
         <clobbers target="cordova.plugins.kbeacon" />
@@ -43,7 +42,6 @@
 		
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
 
-	<preference name="deployment-target" value="$DEPLOYMENT_TARGET" />
 	<preference name="SwiftVersion" value="$SWIFTVERSION" />
 	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
 		
