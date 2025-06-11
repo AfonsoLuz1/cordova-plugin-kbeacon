@@ -55,7 +55,7 @@
         	</build-settings>
 	</config-file>
 
-	<config-file target="Podfile" parent="/*">Add commentMore actions
+	<config-file target="Podfile" parent="/*">
 		<edit-config target="use_frameworks!" file="Podfile" mode="merge">
 			<string>use_frameworks!</string>
 		</edit-config>
