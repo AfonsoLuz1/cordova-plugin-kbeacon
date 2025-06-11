@@ -1,7 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <plugin id="app.heroesde4patas.cordova.plugin.kbeacon" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>cordovaPluginKBeacon</name>	
-	<js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
+<name>cordovaPluginKBeacon</name>	
+
+    <variable name="USESWIFTLANGUAGEVERSION" default="true" />
+    <variable name="SWIFTVERSION" default="5.0" />
+    <variable name="PODS_USE_FRAMEWORKS" default="true" />
+	
+    <js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
         <clobbers target="cordova.plugins.kbeacon" />
     </js-module>
     
@@ -50,9 +55,9 @@
 		</build-settings>
 	</config-file>
 
-	<preference name="UseSwiftLanguageVersion" value="5" />
-	<preference name="SwiftVersion" value="5" />
-	<preference name="pods_use_frameworks" value="true" />
+	<preference name="UseSwiftLanguageVersion" value="$USESWIFTLANGUAGEVERSION" />
+	<preference name="SwiftVersion" value="$SWIFTVERSION" />
+	<preference name="pods_use_frameworks" value="$PODS_USE_FRAMEWORKS" />
 	
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
 
