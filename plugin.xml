@@ -43,13 +43,13 @@
             </feature>
         </config-file>     
 
-    	<config-file parent="BuildSettings" target="*-Debug.xcconfig">
+    	<config-file parent="BuildSettings" target="cordova/build-debug.xcconfig">
         	<build-settings>
             		<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
         	</build-settings>
     	</config-file>
 
-    	<config-file parent="BuildSettings" target="*-Release.xcconfig">
+    	<config-file parent="BuildSettings" target="cordova/build-release.xcconfig">
         	<build-settings>
             		<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
         	</build-settings>
