@@ -43,25 +43,34 @@
             </feature>
         </config-file>     
 
-	<config-file parent="BuildSettings" target="*-Debug.xcconfig">
-		<build-settings>
-			<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
-		</build-settings>
+    	<config-file parent="BuildSettings" target="*-Debug.xcconfig">
+        	<build-settings>
+            		<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
+        	</build-settings>
+    	</config-file>
+
+    	<config-file parent="BuildSettings" target="*-Release.xcconfig">
+        	<build-settings>
+            		<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
+        	</build-settings>
+	</config-file>
+	    
+	<config-file target="Podfile" parent="/*">
+		<edit-config target="use_frameworks!" file="Podfile" mode="merge">
+			<string>use_frameworks!</string>
+		</edit-config>
 	</config-file>
 
-	<config-file parent="BuildSettings" target="*-Release.xcconfig">
-		<build-settings>
-			<ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>YES</ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES>
-		</build-settings>
-	</config-file>
-
+	    
 	<preference name="UseSwiftLanguageVersion" value="$USESWIFTLANGUAGEVERSION" />
 	<preference name="SwiftVersion" value="$SWIFTVERSION" />
-	<preference name="pods_use_frameworks" value="$PODS_USE_FRAMEWORKS" />
+	<preference name="PodsUseFrameworks" value="$PODS_USE_FRAMEWORKS" />
 	
 	<source-file src="src/ios/cordovaPluginKBeacon.swift" />
 
-	<dependency id="cordova-plugin-add-swift-support@2.0.2"/>
+	<pod name="kbeaconlib2" />
+
+	<dependency id="cordova-plugin-add-swift-support"/>
 		
     </platform>
 </plugin>
