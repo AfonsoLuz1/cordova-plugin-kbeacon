@@ -3,7 +3,7 @@
 <name>cordovaPluginKBeacon</name>	
 
     <variable name="USESWIFTLANGUAGEVERSION" default="true" />
-    <variable name="SWIFTVERSION" default="5.0" />
+    <variable name="SWIFTVERSION" default="6.0" />
     <variable name="PODS_USE_FRAMEWORKS" default="true" />
 	
     <js-module name="cordovaPluginKBeacon" src="www/cordova-plugin-kbeacon.js">
