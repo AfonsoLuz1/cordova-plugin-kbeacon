@@ -415,7 +415,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	        return;
 	    }
 	
-	    beacon.setPassword(newPassword, new ActionCallback() {
+	    beacon.setPassword(newPassword, new KBeacon.ActionCallback() {
 	        @Override
 	        public void onActionComplete(boolean success, KBException error) {
 	            if (success) {
