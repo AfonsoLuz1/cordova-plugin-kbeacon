@@ -406,6 +406,12 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 //set Password	
 private void setPassword(String macAddress,String newPassword, CallbackContext callbackContext) {
     KBeacon beacon = mBeaconsMgr.getBeacon(macAddress);
+    
+    if (newPassword == null || newPassword.length() < 8 || newPassword.length() > 16) {
+        callbackContext.error("Password must be between 8 and 16 characters.");
+        return;
+    }
+
     if (beacon == null) {
         callbackContext.error("Beacon not found: " + macAddress);
         return;
