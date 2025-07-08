@@ -254,6 +254,14 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	    	return true;
 	}
 
+	if ("setPassword".equalsIgnoreCase(action)) {
+	String macAddress = args.getString(0);  // MAC address of beacon
+	String newPassword = args.getString(1);       // Usually "000000" by default
+
+	this.setPassword(macAddress, newPassword, callback);
+	return true;
+	}
+
         return false;
     }
 
@@ -392,6 +400,33 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
                 }
             }
         });
+    }
+
+    private void setPassword(String macAddress, String newPassword, CallbackContext callbackContext) {
+    KBeacon beacon = mBeaconsMgr.getBeacon(macAddress);
+    if (beacon == null) {
+        callbackContext.error("Beacon not found: " + macAddress);
+        return;
+    }
+
+        public void onConnStateChange(KBeacon kBeacon, KBConnState state, int reason) {
+            if (state == KBConnState.Connected) {
+                // Now set new password
+                beacon.setPassword(newPassword, new KBeacon.ActionCallback() {
+                    @Override
+                    public void onActionComplete(boolean success, KBException error) {
+                        if (success) {
+                            callbackContext.success("Password changed successfully.");
+                        } else {
+                            callbackContext.error("Failed to change password: " + error.errorCode);
+                        }
+                        beacon.disconnect();
+                    }
+                });
+            } else if (state == KBConnState.Disconnected) {
+                // Optional: handle disconnection
+            }
+        }
     }
 	
     private void checkPermissions(CallbackContext callbackContext){
