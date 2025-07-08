@@ -30,6 +30,10 @@ KBeacon.prototype.stopScanning = function() {
     cordova.exec(null, null, 'cordovaPluginKBeacon', 'stopScanning', []);
 };
 
+KBeacon.prototype.setPassword = function (macAddress, newPassword, successCallback, errorCallback) {
+    cordova.exec(successCallback, errorCallback, "cordovaPluginKBeacon", "setPassword", []);
+};
+
 // iOS
 
 KBeacon.prototype.startScaniOS = function(successCallback, errorCallback) {
