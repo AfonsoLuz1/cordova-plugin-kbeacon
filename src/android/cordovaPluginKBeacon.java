@@ -45,6 +45,7 @@ import com.kkmcn.kbeaconlib2.KBException;
 
 import java.util.Locale;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class cordovaPluginKBeacon extends CordovaPlugin {
 
@@ -427,7 +428,7 @@ private void setPassword(String macAddress,String newPassword, CallbackContext c
             if (success) {
                 callbackContext.success("Password updated successfully.");
             } else {
-                callbackContext.error("Failed to update password: " + error.errorMessage());
+                callbackContext.error("Failed to update password: " + error.errorCode);
             }
         }
     });
