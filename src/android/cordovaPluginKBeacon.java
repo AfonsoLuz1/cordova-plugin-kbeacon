@@ -415,16 +415,12 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 	        return;
 	    }
 	
-	    beacon.setPassword(newPassword, new KBeacon.ActionCallback() {
-	        @Override
-	        public void onActionComplete(boolean success, KBException error) {
-	            if (success) {
-	                callbackContext.success("Password changed successfully.");
-	            } else {
-	                callbackContext.error("Failed to change password: " + error.errorCode);
-	            }
-	        }
-	    });
+	    try {
+	        beacon.setPassword(newPassword);  // No callback version
+	        callbackContext.success("Password set command issued successfully.");
+	    } catch (Exception e) {
+	        callbackContext.error("Error setting password: " + e.getMessage());
+	    }
     }
 	
     private void checkPermissions(CallbackContext callbackContext){
