@@ -418,7 +418,7 @@ private void setPassword(String macAddress, String newPassword, CallbackContext 
     KBCfgCommon cfgCommon = new KBCfgCommon();
     cfgCommon.setPassword(newPassword);
 
-    beacon.configBeacon(cfgCommon, new ActionCallback() {
+    beacon.configBeacon(cfgCommon, new KBeacon.ActionCallback() {
         @Override
         public void onActionComplete(boolean success, KBException error) {
             if (success) {
