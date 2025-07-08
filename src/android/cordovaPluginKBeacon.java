@@ -37,7 +37,6 @@ import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketSystem;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvType;
 import com.kkmcn.kbeaconlib2.KBeacon;
 import com.kkmcn.kbeaconlib2.KBeaconsMgr;
-import com.kkmcn.kbeaconlib2.ActionCallback
 
 import com.kkmcn.kbeaconlib2.KBConnState;
 import com.kkmcn.kbeaconlib2.KBConnectionEvent;
@@ -404,7 +403,7 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
     }
 
 //set Password	
-private void setPassword(String macAddress, String newPassword, CallbackContext callbackContext) {
+private void setPassword(String macAddress,String newPassword, CallbackContext callbackContext) {
     KBeacon beacon = mBeaconsMgr.getBeacon(macAddress);
     if (beacon == null) {
         callbackContext.error("Beacon not found: " + macAddress);
@@ -419,13 +418,16 @@ private void setPassword(String macAddress, String newPassword, CallbackContext 
     KBCfgCommon cfgCommon = new KBCfgCommon();
     cfgCommon.setPassword(newPassword);
 
-    beacon.configBeacon(cfgCommon, new KBeacon.ActionCallback() {
+    ArrayList<KBCfgBase> cfgList = new ArrayList<>(1);
+    cfgList.add(cfgCommon);
+
+    beacon.modifyConfig(cfgList, new KBeacon.ActionCallback() {
         @Override
         public void onActionComplete(boolean success, KBException error) {
             if (success) {
-                callbackContext.success("Password changed successfully.");
+                callbackContext.success("Password updated successfully.");
             } else {
-                callbackContext.error("Failed to change password: " + error.errorCode);
+                callbackContext.error("Failed to update password: " + error.errorMessage());
             }
         }
     });
