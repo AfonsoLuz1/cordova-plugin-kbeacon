@@ -25,7 +25,7 @@ import android.view.Gravity;
 import android.widget.Toast;
 import android.os.Build;
 
-
+import com.kkmcn.kbeaconlib2.KBCfgPackage.KBCfgBase;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAccSensorValue;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketBase;
 import com.kkmcn.kbeaconlib2.KBAdvPackage.KBAdvPacketEddyTLM;
