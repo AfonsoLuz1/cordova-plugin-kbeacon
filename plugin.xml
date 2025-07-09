@@ -17,15 +17,14 @@
                 <param name="onload" value="true" />
             </feature>
         </config-file>
-        <config-file parent="/*" target="AndroidManifest.xml">
-            <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
-            <uses-permission android:name="android.permission.BLUETOOTH" />
-            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-            <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-        </config-file>
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest">
+		<uses-permission android:name="android.permission.BLUETOOTH" />
+		<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+		<uses-permission android:name="android.permission.INTERNET" />
+		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+		<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+	</edit-config>
         <framework src="com.kkmcn.kbeaconlib2:kbeaconlib2:1.1.9" />
         <source-file src="src/android/cordovaPluginKBeacon.java" target-dir="src/app/heroesde4patas/cordova/plugin/kbeacon/cordovaPluginKBeacon" />
     </platform>
