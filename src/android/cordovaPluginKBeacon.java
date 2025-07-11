@@ -350,9 +350,9 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		
 		else if (state == KBConnState.Disconnected) {
 			if (nReason == KBConnectionEvent.ConnAuthFail) {
-	               		connectionCallback.error("password error");
+	               		connectionCallback.error("Wrong password.");
 	           	} else if (nReason == KBConnectionEvent.ConnTimeout) {
-	               		connectionCallback.error("connection timeout");
+	               		connectionCallback.error("Connection timeout.");
 	           	} else {
 		               connectionCallback.error("connection other error, reason:" + nReason);
 	           }
