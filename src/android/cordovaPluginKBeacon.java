@@ -349,7 +349,13 @@ public class cordovaPluginKBeacon extends CordovaPlugin {
 		}*/
 		
 		else if (state == KBConnState.Disconnected) {
-	            connectionCallback.success("Disconnected from beacon.");
+			if (nReason == KBConnectionEvent.ConnAuthFail) {
+	               		callbackContext.error("password error");
+	           	} else if (nReason == KBConnectionEvent.ConnTimeout) {
+	               		callbackContext.error("connection timeout");
+	           	} else {
+		               callbackContext.error("connection other error, reason:" + nReason);
+	           }
 		}
 		
 	    }
